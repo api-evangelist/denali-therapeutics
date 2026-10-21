@@ -1,0 +1,138 @@
+edges:
+- partner_name: FDA Drugs@FDA (approved drug and biologic applications)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761485
+  category: FDA drug / biologic application holder
+  contract_reference:
+    register: Drugs@FDA (openFDA drug/drugsfda; application holder = sponsor_name)
+    standard: FDA drug / biologic marketing application (21 CFR 314 / 601)
+    spec_file: null
+    role: fda-application-holder
+    registered_name: DENALI THERAPEUTICS INC.
+    matched_domain: denalitherapeutics.com
+    matched_by: domain
+    certified_products:
+    - product: Biologics License Application (approved) (Drugs@FDA)
+      product_type: BLA
+      lapsed: false
+      products_sample:
+      - AVLAYAH
+    applications_sample:
+    - BLA761485
+    signal_note: certified_products = one entry per application TYPE (NDA / ANDA / BLA), never per application;
+      lapsed when every product under the type is Discontinued. Applications are context, never counted
+    detected_by: sweep-clinical-trial-sponsors.py
+    detected: '2026-10-21'
+    identity: wikidata Q50037774 'Denali Therapeutics (United States)' P856 https://www.denalitherapeutics.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-clinical-trial-sponsors.py
+  first_seen: '2026-10-21'
+- partner_name: ClinicalTrials.gov (industry trial sponsors and collaborators)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://clinicaltrials.gov/study/NCT07758595
+  category: Interventional trial sponsor / collaborator
+  contract_reference:
+    register: ClinicalTrials.gov API v2 (interventional, started >= 2021-01-01, industry lead sponsor or collaborator)
+    standard: null
+    spec_file: null
+    role: trial-collaborator+lead-sponsor
+    registered_name: Denali Therapeutics Inc.
+    matched_domain: denalitherapeutics.com
+    matched_by: domain
+    lead_sponsor: true
+    active_trial: true
+    latest_start: '2026-08-07'
+    trials_sample:
+    - NCT07758595
+    - NCT07354724
+    - NCT07328451
+    - NCT06602193
+    - NCT06281158
+    signal_note: 'PARTICIPATION only (a trial is not an approval): lead_sponsor, active_trial and latest_start are
+      per-edge signals; the number of trials is never counted'
+    detected_by: sweep-clinical-trial-sponsors.py
+    detected: '2026-10-21'
+    identity: wikidata Q50037774 'Denali Therapeutics (United States)' P856 https://www.denalitherapeutics.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-clinical-trial-sponsors.py
+  first_seen: '2026-10-21'
+- partner_name: EU CTIS (clinical trial sponsors)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://euclinicaltrials.eu/ctis-public/view/2025-524082-25-00
+  category: EU clinical trial sponsor
+  contract_reference:
+    register: EU Clinical Trials Information System public search (euclinicaltrials.eu, sponsorType 'Pharmaceutical
+      company')
+    standard: null
+    spec_file: null
+    role: eu-trial-sponsor
+    registered_name: Denali Therapeutics Inc.
+    matched_domain: denalitherapeutics.com
+    matched_by: domain
+    trials_sample:
+    - 2025-524082-25-00
+    - 2025-523515-11-00
+    - 2024-513384-15-00
+    - 2024-510990-21-00
+    - 2023-508619-22-00
+    signal_note: 'PARTICIPATION only: a CTIS sponsor listing; the number of trials is never counted'
+    detected_by: sweep-clinical-trial-sponsors.py
+    detected: '2026-10-21'
+    identity: wikidata Q50037774 'Denali Therapeutics (United States)' P856 https://www.denalitherapeutics.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-clinical-trial-sponsors.py
+  first_seen: '2026-10-21'
+- partner_name: CDISC (members)
+  partner: cdisc
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  partner_tier: GOLD
+  evidence: https://www.cdisc.org/company/denali-therapeutics-0
+  category: Clinical data standards member
+  contract_reference:
+    register: CDISC member search (cdisc.org/members/search + public company page website)
+    standard: CDISC clinical data standards (SDTM / ADaM / CDASH / ODM)
+    spec_file: null
+    role: cdisc-member
+    registered_name: Denali Therapeutics
+    register_id: denali-therapeutics-0
+    member_industry: Pharmaceutical
+    listed_website: https://www.denalitherapeutics.com/
+    matched_domain: denalitherapeutics.com
+    matched_by: domain
+    signal_note: 'self-filed paid membership: listing alone = standard-participant (standards adopter); partner_tier
+      is the membership level, never weighted as a tier; hand-reviewed'
+    detected_by: sweep-clinical-trial-sponsors.py
+    detected: '2026-10-21'
+  detected_by: sweep-clinical-trial-sponsors.py
+  first_seen: '2026-10-21'
+generated: '2026-10-21'
+method: searched
+source:
+- https://clinicaltrials.gov/api/v2/studies
+- https://api.fda.gov/drug/drugsfda.json
+- https://euclinicaltrials.eu/ctis-public/search
+- https://www.cdisc.org/members/search
+checked:
+- https://api.fda.gov/drug/drugsfda.json
+- https://clinicaltrials.gov/api/v2/studies
+- https://euclinicaltrials.eu/ctis-public/search
+- https://www.cdisc.org/members/search
